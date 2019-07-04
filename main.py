@@ -94,8 +94,8 @@ while True:
         "temp": esp32.raw_temperature()
     }
     print("Publishing message "+str(ujson.dumps(message)))
-    led_pin.value(0)
+    led_pin.value(1)
     mqtt_topic = '/devices/{}/{}'.format(config.google_cloud_config['device_id'], 'events')
     client.publish(mqtt_topic.encode('utf-8'), ujson.dumps(message).encode('utf-8'))
-    led_pin.value(1)
+    led_pin.value(0)
     utime.sleep(10)  # Delay for 10 seconds.
