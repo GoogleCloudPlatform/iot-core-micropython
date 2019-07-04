@@ -28,7 +28,7 @@ import ujson
 import config
 
 sta_if = network.WLAN(network.STA_IF)
-led_pin = machine.Pin(5, Pin.OUT) #built-in LED pin
+led_pin = machine.Pin(config.device_config['led_pin'], Pin.OUT) #built-in LED pin
 led_pin.value(1)
 
 def connect():
