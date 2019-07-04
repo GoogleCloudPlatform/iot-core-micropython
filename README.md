@@ -62,7 +62,7 @@ This sample demonstrates how to use MicroPython to connect to Cloud IoT Core inc
 10. Copy the Python sources to the device.
 
 ```
-    ampy —-port $SERIALPORT —-baud 115200 put lib
+    ampy —-port $SERIALPORT —-baud 115200 put third_party
     ampy —-port $SERIALPORT —-baud 115200 put config.py
     ampy —-port $SERIALPORT —-baud 115200 put main.py
 ```
