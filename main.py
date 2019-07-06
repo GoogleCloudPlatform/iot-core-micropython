@@ -38,14 +38,14 @@ def connect():
         sta_if.connect(config.wifi_config['ssid'], config.wifi_config['password'])
         while not sta_if.isconnected():
             pass
-    #print('network config:', sta_if.ifconfig())
+    print('network config: {}'.format(sta_if.ifconfig()))
 
 def set_time():
     ntptime.settime()
     tm = utime.localtime()
     tm = tm[0:3] + (0,) + tm[3:6] + (0,)
     machine.RTC().datetime(tm)
-    #print(utime.localtime())
+    print('current time: {}'.format(utime.localtime()))
 
 def b42_urlsafe_encode(payload):
     return string.translate(b2a_base64(payload)[:-1].decode('utf-8'),{ ord('+'):'-', ord('/'):'_' })
