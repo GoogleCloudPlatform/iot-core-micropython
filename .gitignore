@@ -1,1 +1,4 @@
 config.py
+*.pem
+env*/*
+screenlog*

@@ -32,7 +32,7 @@ This sample demonstrates how to use MicroPython to connect to Cloud IoT Core inc
 ```
     esptool.py --port $SERIALPORT flash_id
 ```
-    
+
 5. [Download and install MicroPython](http://micropython.org/download).
 
 ```
@@ -46,7 +46,7 @@ This sample demonstrates how to use MicroPython to connect to Cloud IoT Core inc
     openssl genrsa -out rsa_private.pem 2048
     openssl rsa -in rsa_private.pem -pubout -out rsa_public.pem
 ```
-    
+
 7. Create your registry and device, [as described in the Cloud IoT Core documentation](https://cloud.google.com/iot/docs/how-tos/devices), using the keys from the previous step.
 
 8. Translate the RSA key for device configuration and install the output into a new file based on `config.py.example`.
@@ -70,7 +70,7 @@ This sample demonstrates how to use MicroPython to connect to Cloud IoT Core inc
 11. Connect to the device over the serial port and press reset on the device.
 
 ```
-    screen -L /dev/tty.SLAB_USBtoUART 115200 -L
+    screen -L $SERIALPORT
 ```
 
 If everything worked you should see output similar to the following.
@@ -87,7 +87,7 @@ You can read the telemetry from PubSub using the following [Google Cloud SDK](ht
 * Espressif ESP32
 
 ## Dependencies
-* Some small modifications have been done to [python-rsa](https://github.com/sybrenstuvel/python-rsa) library to allow this to work on MicroPython. 
+* Some small modifications have been done to [python-rsa](https://github.com/sybrenstuvel/python-rsa) library to allow this to work on MicroPython.
 
 ## Pre-requisites
 * Google Cloud Project with the Cloud IoT Core API enabled
