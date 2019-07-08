@@ -1,7 +1,7 @@
 MicroPython Example with Google IoT Core
 ============================================
 
-This sample demonstrates how to use MicroPython to connect to Cloud IoT Core incorporating parts from [A tracking prototype](https://github.com/jbrichau/TrackingPrototype).
+This sample demonstrates how to use MicroPython to connect to Cloud IoT Core incorporating parts from [TrackingPrototype](https://github.com/jbrichau/TrackingPrototype).
 
 ## Quickstart with Espressif ESP32
 
