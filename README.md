@@ -36,8 +36,8 @@ This sample demonstrates how to use MicroPython to connect to Cloud IoT Core inc
 5. [Download and install MicroPython](http://micropython.org/download).
 
 ```
-    esptool.py —-chip esp32 —-port $SERIALPORT erase_flash
-    esptool.py —-chip esp32 —-port $SERIALPORT —-baud 460800 write_flash -z 0x1000 ~/Downloads/esp32–20190529-v1.11.bin
+    esptool.py --chip esp32 --port $SERIALPORT erase_flash
+    esptool.py --chip esp32 --port $SERIALPORT --baud 460800 write_flash -z 0x1000 ~/Downloads/esp32–20190529-v1.11.bin
 ```
 
 6. Generate your public / private keypair.
@@ -62,9 +62,9 @@ This sample demonstrates how to use MicroPython to connect to Cloud IoT Core inc
 10. Copy the Python sources to the device.
 
 ```
-    ampy —-port $SERIALPORT —-baud 115200 put third_party
-    ampy —-port $SERIALPORT —-baud 115200 put config.py
-    ampy —-port $SERIALPORT —-baud 115200 put main.py
+    ampy --port $SERIALPORT --baud 115200 put third_party
+    ampy --port $SERIALPORT --baud 115200 put config.py
+    ampy --port $SERIALPORT --baud 115200 put main.py
 ```
 
 11. Connect to the device over the serial port and press reset on the device.
