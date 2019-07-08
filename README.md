@@ -30,7 +30,7 @@ This sample demonstrates how to use MicroPython to connect to Cloud IoT Core inc
 4. Test flashing your device.
 
 ```
-    esptool.py —-port $SERIALPORT flash_id
+    esptool.py --port $SERIALPORT flash_id
 ```
     
 5. [Download and install MicroPython](http://micropython.org/download).
