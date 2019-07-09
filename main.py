@@ -31,6 +31,9 @@ sta_if = network.WLAN(network.STA_IF)
 led_pin = machine.Pin(config.device_config['led_pin'], Pin.OUT) #built-in LED pin
 led_pin.value(1)
 
+def on_message(topic, message):
+    print((topic,message))
+
 def connect():
     if not sta_if.isconnected():
         print('connecting to network...')
@@ -78,6 +81,10 @@ def get_mqtt_client(project_id, cloud_region, registry_id, device_id, jwt):
     client_id = 'projects/{}/locations/{}/registries/{}/devices/{}'.format(project_id, cloud_region, registry_id, device_id)
     print('Sending message with password {}'.format(jwt))
     client = MQTTClient(client_id.encode('utf-8'),server=config.google_cloud_config['mqtt_bridge_hostname'],port=config.google_cloud_config['mqtt_bridge_port'],user=b'ignored',password=jwt.encode('utf-8'),ssl=True)
+    client.set_callback(on_message)
+    client.connect()
+    client.subscribe('/devices/{}/config'.format(device_id), 1)
+    client.subscribe('/devices/{}/commands/#'.format(device_id), 1)
     return client
 
 connect()
@@ -86,7 +93,6 @@ set_time()
 
 jwt = create_jwt(config.google_cloud_config['project_id'], config.jwt_config['private_key'], config.jwt_config['algorithm'], config.jwt_config['token_ttl'])
 client = get_mqtt_client(config.google_cloud_config['project_id'], config.google_cloud_config['cloud_region'], config.google_cloud_config['registry_id'], config.google_cloud_config['device_id'], jwt)
-client.connect()
 
 while True:
     message = {
@@ -98,4 +104,6 @@ while True:
     mqtt_topic = '/devices/{}/{}'.format(config.google_cloud_config['device_id'], 'events')
     client.publish(mqtt_topic.encode('utf-8'), ujson.dumps(message).encode('utf-8'))
     led_pin.value(0)
+
+    client.check_msg() # Check for new messages on subscription
     utime.sleep(10)  # Delay for 10 seconds.
