@@ -70,8 +70,11 @@ This sample demonstrates how to use MicroPython to connect to Cloud IoT Core inc
 11. Connect to the device over the serial port and press reset on the device.
 
 ```
-    screen -L $SERIALPORT
+    screen -L $SERIALPORT 115200
 ```
+
+Note that on machines without screen, you can use other software such as the
+[Arduino IDE](https://arduino.cc) for accessing the terminal.
 
 If everything worked you should see output similar to the following.
 
@@ -82,6 +85,10 @@ If everything worked you should see output similar to the following.
 You can read the telemetry from PubSub using the following [Google Cloud SDK](https://cloud.google.com/sdk) command.
 
     gcloud pubsub subscriptions pull <your-pubsub-repo> --auto-ack --limit=500
+
+## Troubleshooting
+If the device freezes around the time network initialization completes you may
+want to try using a different pin for the LED. This can resolve some issues.
 
 ## Hardware target(s)
 * Espressif ESP32
